@@ -2,12 +2,10 @@ package com.codingChallenge.project.controller;
 
 import com.codingChallenge.project.model.PatientDoctor;
 import com.codingChallenge.project.service.PatientDoctorService;
+import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class PatientDoctorController {
@@ -21,6 +19,10 @@ public class PatientDoctorController {
     @PostMapping("/api/patient/doctor/appointment/add")
     public ResponseEntity<?> createAppointment(@RequestParam int patientId, @RequestParam int doctorId, @RequestBody PatientDoctor patientDoctor){
         return ResponseEntity.status(HttpStatus.CREATED).body(patientDoctorService.createAppointment(patientId, doctorId, patientDoctor));
+    }
+    @GetMapping("/api/patient/doctor/getPatients")
+    public ResponseEntity<?> getPatientsByDoctor(@RequestParam int doctorId){
+        return ResponseEntity.status(HttpStatus.FOUND).body(patientDoctorService.getPatientsByDoctor(doctorId));
     }
 
 }

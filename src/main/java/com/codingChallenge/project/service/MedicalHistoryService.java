@@ -1,9 +1,15 @@
 package com.codingChallenge.project.service;
 
+import com.codingChallenge.project.dto.MedicalHistoryDto;
+import com.codingChallenge.project.dto.PatientDto;
+import com.codingChallenge.project.exception.ResourceNotFoundException;
 import com.codingChallenge.project.model.MedicalHistory;
 import com.codingChallenge.project.model.Patient;
 import com.codingChallenge.project.repository.MedicalHistoryRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class MedicalHistoryService {
@@ -38,5 +44,19 @@ public class MedicalHistoryService {
             medicalHistory.setPatient(patient);
         }
         return medicalHistoryRepository.save(medicalHistory);
+    }
+
+    public List<MedicalHistoryDto> getMedicalHistorysOfPatient(int patientId) {
+        List<MedicalHistory> medicalHistories =  medicalHistoryRepository.getByPatientId(patientId);
+        List<MedicalHistoryDto> medicalHistoryDtos = new ArrayList<>();
+        for(MedicalHistory medicalHistory: medicalHistories){
+            MedicalHistoryDto medicalHistoryDto = new MedicalHistoryDto();
+            medicalHistoryDto.setIllness(medicalHistory.getIllness());
+            medicalHistoryDto.setCurrentMedication(medicalHistory.getCurrentMedication());
+            medicalHistoryDto.setNoOfYears(medicalHistory.getNumOfYears());
+            medicalHistoryDto.setPatientName(medicalHistory.getPatient().getName());
+            medicalHistoryDtos.add(medicalHistoryDto);
+        }
+        return medicalHistoryDtos;
     }
 }

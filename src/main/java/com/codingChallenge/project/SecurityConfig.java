@@ -23,9 +23,10 @@ public class SecurityConfig {
                         .requestMatchers("/api/user/signup").permitAll()
                         .requestMatchers("/api/patient/add").permitAll()
                         .requestMatchers("/api/doctor/add").permitAll()
+                        .requestMatchers("/api/patient/doctor/appointment/add").permitAll()
                         .requestMatchers("/api/patient/medicalHistory/add").permitAll()
-
-
+                        .requestMatchers("/api/patient/doctor/getPatients").hasAuthority("DOCTOR")
+                        .requestMatchers("/api/patient/medicalHistory/getPatients").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)

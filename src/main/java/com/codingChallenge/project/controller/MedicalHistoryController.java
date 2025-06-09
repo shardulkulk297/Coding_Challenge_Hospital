@@ -5,9 +5,7 @@ import com.codingChallenge.project.model.Patient;
 import com.codingChallenge.project.service.MedicalHistoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
@@ -23,5 +21,10 @@ public class MedicalHistoryController {
     @PostMapping("/api/patient/medicalHistory/add")
     public ResponseEntity<?> addPatientWithMedicalRecords(@RequestBody MedicalHistory medicalHistory){
         return ResponseEntity.status(HttpStatus.CREATED).body(medicalHistoryService.addPatientWithMedicalRecords(medicalHistory));
+    }
+
+    @GetMapping("/api/patient/medicalHistory/getPatients")
+    public ResponseEntity<?> getPatients(@RequestParam int patientId){
+        return ResponseEntity.status(HttpStatus.FOUND).body(medicalHistoryService.getMedicalHistorysOfPatient(patientId));
     }
 }
