@@ -46,6 +46,10 @@ public class MedicalHistoryService {
         return medicalHistoryRepository.save(medicalHistory);
     }
 
+    /*
+    As one patient can have many medical histories when called using patientId it will return list of medicalHistories of patients.
+     */
+
     public List<MedicalHistoryDto> getMedicalHistorysOfPatient(int patientId) {
         List<MedicalHistory> medicalHistories =  medicalHistoryRepository.getByPatientId(patientId);
         List<MedicalHistoryDto> medicalHistoryDtos = new ArrayList<>();

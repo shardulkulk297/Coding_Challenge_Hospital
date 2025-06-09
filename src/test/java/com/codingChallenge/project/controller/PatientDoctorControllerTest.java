@@ -5,6 +5,8 @@ import com.codingChallenge.project.repository.PatientDoctorRepository;
 import com.codingChallenge.project.repository.PatientRepository;
 import com.codingChallenge.project.service.PatientDoctorService;
 import com.codingChallenge.project.service.PatientService;
+import org.aspectj.lang.annotation.After;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -47,6 +49,11 @@ public class PatientDoctorControllerTest {
 
         assertEquals(expected, actual);
 
+    }
+
+    @AfterEach
+    public void makeNull(){
+        patient = null;
     }
 
 

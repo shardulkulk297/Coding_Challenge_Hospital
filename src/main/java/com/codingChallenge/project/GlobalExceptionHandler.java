@@ -1,5 +1,6 @@
 package com.codingChallenge.project;
 
+import com.codingChallenge.project.exception.InvalidIdException;
 import com.codingChallenge.project.exception.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +26,13 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(exception = ResourceNotFoundException.class)
     public ResponseEntity<?> handleResourceNotFound(ResourceNotFoundException e) {
+        Map<String, String> map = new HashMap<>();
+        map.put("message", e.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(map);
+    }
+
+    @ExceptionHandler(exception = InvalidIdException.class)
+    public ResponseEntity<?> handleInvalidId(InvalidIdException e) {
         Map<String, String> map = new HashMap<>();
         map.put("message", e.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(map);

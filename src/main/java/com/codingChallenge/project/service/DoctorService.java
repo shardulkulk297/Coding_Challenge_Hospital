@@ -16,7 +16,22 @@ public class DoctorService {
         this.doctorRepository = doctorRepository;
     }
 
+    /*
+    API TO ADD DOCTORS
+     */
+
     public Doctor addDoctor(Doctor doctor) {
+
+        if(doctor == null){
+            throw new NullPointerException("NULL DATA CANNOT BE ACCEPTED");
+        }
+        if(doctor.getUser().getUsername() == null || doctor.getUser().getUsername().equals(" ")){
+            throw new RuntimeException("Username Cannot be null");
+        }
+        if(doctor.getUser().getPassword() == null || doctor.getUser().getPassword().equals(" ")){
+            throw new RuntimeException("You must enter a secure password");
+        }
+        
         User user = doctor.getUser();
         user.setRole(Role.DOCTOR);
         user = userService.signUp(user);
