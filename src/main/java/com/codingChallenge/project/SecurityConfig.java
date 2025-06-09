@@ -21,6 +21,9 @@ public class SecurityConfig {
         http.csrf((csrf)->csrf.disable())
                 .authorizeHttpRequests(authorize->authorize
                         .requestMatchers("/api/user/signup").permitAll()
+                        .requestMatchers("/api/patient/add").permitAll()
+                        .requestMatchers("/api/patient/medicalHistory/add").hasAuthority("PATIENT")
+                        
 
                         .anyRequest().authenticated()
                 )

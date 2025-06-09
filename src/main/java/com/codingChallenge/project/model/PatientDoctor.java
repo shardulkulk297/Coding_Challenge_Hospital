@@ -7,6 +7,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "patient_doctor")
 public class PatientDoctor {
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY )
     private int id;
     @ManyToOne

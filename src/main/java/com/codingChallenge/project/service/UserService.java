@@ -1,6 +1,5 @@
 package com.codingChallenge.project.service;
 
-import com.codingChallenge.project.dto.UserDto;
 import com.codingChallenge.project.model.User;
 import com.codingChallenge.project.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,14 +15,11 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public UserDto signUp(User user){
+    public User signUp(User user){
         String password = user.getPassword();
         String encodedPassword = passwordEncoder.encode(password);
         user.setPassword(encodedPassword);
         User userSaved = userRepository.save(user);
-        UserDto userDto = new UserDto();
-        userDto.setUsername(userSaved.getUsername());
-        userDto.setRole(userSaved.getRole());
-        return userDto;
+        return userSaved;
     }
 }

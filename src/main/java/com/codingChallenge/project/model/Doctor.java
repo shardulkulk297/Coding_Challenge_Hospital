@@ -6,11 +6,22 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "doctor")
 public class Doctor {
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(nullable = false)
     private String name;
     private Speciality speciality;
+    @OneToOne
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public int getId() {
         return id;

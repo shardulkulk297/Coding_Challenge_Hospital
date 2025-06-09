@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "medical_history")
 public class MedicalHistory {
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(nullable = false)
@@ -12,6 +13,16 @@ public class MedicalHistory {
     @Column(name = "num_of_years")
     private int numOfYears;
     private String currentMedication;
+    @ManyToOne
+    private Patient patient;
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
 
     public int getId() {
         return id;
