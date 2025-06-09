@@ -22,7 +22,7 @@ public class PatientDoctorController {
     }
     @GetMapping("/api/patient/doctor/getPatients")
     public ResponseEntity<?> getPatientsByDoctor(@RequestParam int doctorId){
-        return ResponseEntity.status(HttpStatus.FOUND).body(patientDoctorService.getPatientsByDoctor(doctorId));
+        return ResponseEntity.status(HttpStatus.FOUND).body(patientDoctorService.getPatientsByDoctorDto(doctorId));
     }
 
 }

@@ -83,6 +83,9 @@ public class PatientDoctorService {
         for(Patient patient: patients)
         {
             PatientDto patientDto = new PatientDto();
+
+            List<MedicalHistoryDto> medicalHistoryDtos = medicalHistoryService.getMedicalHistorysOfPatient(patient.getId());
+            patientDto.setMedicalHistoryDtos(medicalHistoryDtos);
             patientDto.setName(patient.getName());
             patientDto.setAge(patient.getAge());
             patientDtos.add(patientDto);
