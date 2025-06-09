@@ -39,15 +39,8 @@ public class PatientDoctorService {
         return patientDoctorRepository.save(patientDoctor);
     }
 
-    public List<PatientDto> getPatientsByDoctor(int doctorId) {
+    public List<Patient> getPatientsByDoctor(int doctorId) {
         List<Patient> patients = patientDoctorRepository.getPatientsByDoctor(doctorId);
-        List<PatientDto> patientDtos = new ArrayList<>();
-        for(Patient patient: patients){
-            PatientDto dto = new PatientDto();
-            dto.setName(patient.getName());
-            dto.setAge(patient.getAge());
-            patientDtos.add(dto);
-        }
-        return patientDtos;
+        return patients;
     }
 }
