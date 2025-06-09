@@ -31,7 +31,7 @@ public class DoctorService {
         if(doctor.getUser().getPassword() == null || doctor.getUser().getPassword().equals(" ")){
             throw new RuntimeException("You must enter a secure password");
         }
-        
+
         User user = doctor.getUser();
         user.setRole(Role.DOCTOR);
         user = userService.signUp(user);
