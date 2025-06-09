@@ -1,5 +1,6 @@
 package com.codingChallenge.project.service;
 
+import com.codingChallenge.project.dto.MedicalHistoryDto;
 import com.codingChallenge.project.dto.PatientDto;
 import com.codingChallenge.project.exception.InvalidIdException;
 import com.codingChallenge.project.exception.ResourceNotFoundException;
@@ -67,5 +68,25 @@ public class PatientDoctorService {
 
         List<Patient> patients = patientDoctorRepository.getPatientsByDoctor(doctorId);
         return patients;
+    }
+
+    public List<PatientDto> getPatientsByDoctorDto(int doctorId) {
+
+        if(doctorId==0 || doctorId<0){
+            throw new InvalidIdException("Invalid Doctor Id");
+        }
+
+        List<Patient> patients = patientDoctorRepository.getPatientsByDoctor(doctorId);
+
+        List<PatientDto> patientDtos = new ArrayList<>();
+
+        for(Patient patient: patients)
+        {
+            PatientDto patientDto = new PatientDto();
+            patientDto.setName(patient.getName());
+            patientDto.setAge(patient.getAge());
+            patientDtos.add(patientDto);
+        }
+        return patientDtos;
     }
 }

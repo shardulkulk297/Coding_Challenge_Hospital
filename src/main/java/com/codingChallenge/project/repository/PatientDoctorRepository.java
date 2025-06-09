@@ -12,4 +12,6 @@ import java.util.List;
 public interface PatientDoctorRepository extends JpaRepository<PatientDoctor, Integer> {
     @Query("Select p.patient from PatientDoctor p WHERE p.doctor.id = ?1")
     List<Patient> getPatientsByDoctor(int doctorId);
+
+
 }
