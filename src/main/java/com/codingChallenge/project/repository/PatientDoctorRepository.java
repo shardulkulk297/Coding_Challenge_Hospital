@@ -1,4 +1,9 @@
 package com.codingChallenge.project.repository;
 
-public interface PatientDoctorRepository {
+import com.codingChallenge.project.model.PatientDoctor;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface PatientDoctorRepository extends JpaRepository<PatientDoctor, Integer> {
 }

@@ -17,8 +17,7 @@ public class PatientDoctor {
     @Column(nullable = false, name = "date_of_appointment")
     private LocalDate dateOfAppointment;
     private LocalDate lastDateOfVisit;
-    private String consultationReason;
-    private String treatment_plan;
+
 
     public int getId() {
         return id;
@@ -60,19 +59,4 @@ public class PatientDoctor {
         this.lastDateOfVisit = lastDateOfVisit;
     }
 
-    public String getConsultationReason() {
-        return consultationReason;
-    }
-
-    public void setConsultationReason(String consultationReason) {
-        this.consultationReason = consultationReason;
-    }
-
-    public String getTreatment_plan() {
-        return treatment_plan;
-    }
-
-    public void setTreatment_plan(String treatment_plan) {
-        this.treatment_plan = treatment_plan;
-    }
 }

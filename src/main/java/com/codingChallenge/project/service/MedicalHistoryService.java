@@ -16,8 +16,17 @@ public class MedicalHistoryService {
         this.medicalHistoryRepository = medicalHistoryRepository;
     }
 
-    public MedicalHistory addPatientWithMedicalRecords(MedicalHistory medicalHistory) {
+    /*
+    I have written a separate logic in patient service for adding patient so if patient exists already then:
+    1. Fetch Id from username
+    2. Set id to patient
+    3. Set patient to medical history
+    If not:
+    1. Add patient using service
+    2. Set that patient to medicalHistory
+     */
 
+    public MedicalHistory addPatientWithMedicalRecords(MedicalHistory medicalHistory) {
         Patient patient = medicalHistory.getPatient();
         Patient patientToCheck = patientService.getByUsername(patient.getUser().getUsername());
         if(patientToCheck!=null){
